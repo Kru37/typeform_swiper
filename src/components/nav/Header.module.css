@@ -1,13 +1,18 @@
 .logo{
+    /* Position is set to absolute */
     position: absolute;
     top: 10px;
     left: 0;
+    /* Width and spacing */
     width: 8vw;
     padding: 10px;
+    /* display flex to center the logo horizontally */
     display: flex;
     justify-content: center;
 }
 .logo img{
+    /* To take 100% of the width of logo div  */
     width: 100%;
+    /* to maintain aspect ratio */
     height: auto;
 }
