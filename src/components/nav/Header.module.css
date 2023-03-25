@@ -9,6 +9,7 @@
     /* display flex to center the logo horizontally */
     display: flex;
     justify-content: center;
+    z-index: 1000;
 }
 .logo img{
     /* To take 100% of the width of logo div  */

@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   background-color: black;
+}
+:root{
+  --sampler-sem-radius-sm: 4px;
+  --sampler-comp-radius-button: var(--sampler-sem-radius-sm);
+}
+body {
+  overflow: hidden;
+  font-family: 'Questrial', sans-serif;
 }
