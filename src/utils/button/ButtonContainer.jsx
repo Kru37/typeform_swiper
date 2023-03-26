@@ -4,7 +4,7 @@ const ButtonContainer = (props) => {
   return (
     <div className={styles["btn-container"]}>
       {/* To go to next slide */}
-      <button className={styles["agree-btn"]}>{props.btnText}</button>
+      <button className={styles["agree-btn"]} onClick={props.nextSlide}>{props.btnText}</button>
       <div className={styles["helpertext-container"]}>
         <div className={styles["helpertext"]}>
           press

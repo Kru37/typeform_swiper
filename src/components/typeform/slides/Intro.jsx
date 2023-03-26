@@ -1,7 +1,12 @@
 import React from 'react'
+import { useSwiper } from 'swiper/react'
 import ButtonContainer from '../../../utils/button/ButtonContainer'
 import styles from './Intro.module.css'
-const Intro = () => {
+const Intro = (props) => {
+  const swiper = useSwiper()
+  const nextSlide = () => {
+    swiper.slideNext()
+  }
   return (
     // Intro section
     <div className={styles['intro-container']}>
@@ -19,7 +24,7 @@ const Intro = () => {
          <span>- 15 hours/week for the last 3 weeks</span>
         </p>
         {/* Button Container */}
-      <ButtonContainer btnText = "I agree"/>
+      <ButtonContainer btnText = "I agree" nextSlide = {nextSlide}/>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Mousewheel, Pagination } from 'swiper'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import {Swiper, SwiperSlide, useSwiper} from 'swiper/react'
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -11,6 +11,15 @@ import SingleLineQuestion from './slides/SingleLineQuestion';
 
 
 const Typeform = () => {
+  const swiper = useSwiper();
+  // const nextSlide = () => {
+  //   console.log('clicked')
+  //   if(swiper){
+  //     swiper.slideNext()
+  //   }
+
+  // }
+  
   return (
 
     <Swiper
@@ -21,12 +30,18 @@ const Typeform = () => {
      mousewheel={{
       forceToAxis: true
     }}
-     modules = {[ Mousewheel]}
+     modules = {[ Mousewheel , Pagination]}
      className="mySwiper"
      tabIndex={0}
     >
-        <SwiperSlide><Intro/></SwiperSlide>
-        <SwiperSlide><SingleLineQuestion number = {1} question = "What's your first name? *" name="firstName"/></SwiperSlide>
+        <SwiperSlide><Intro /></SwiperSlide>
+        <SwiperSlide>
+          <SingleLineQuestion 
+          number = {1} 
+          question = "What's your first name? *" 
+          name="firstName"
+    
+          /></SwiperSlide>
         <SwiperSlide>Slide 3</SwiperSlide>
         <SwiperSlide>Slide 4</SwiperSlide>
         <SwiperSlide>Slide 5</SwiperSlide>
