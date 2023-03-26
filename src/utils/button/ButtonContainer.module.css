@@ -19,7 +19,7 @@
     transition: background-color 0.1s ease-out;
 }
 /* Hover effect */
-.btn:hover{
+.agree-btn:hover{
     background-color: rgb(38, 139, 255);
 }
 .helpertext{
