@@ -1,0 +1,26 @@
+/* Question container */
+.question-container{
+    display: flex;
+    align-items: center;
+  position: relative;
+}
+.question-container svg{
+    fill: #fff;
+}
+/* Number next to question */
+.question-number{
+    margin-right: 10px;
+    position: absolute;
+    right: 100%;
+    display: flex;
+    align-items: center;
+}
+/* Styling for the number */
+.question-number span{
+    margin-right: 2px;
+    font-size: 16px;
+}
+/* Question text */
+.question{
+    font-size: 24px;
+}

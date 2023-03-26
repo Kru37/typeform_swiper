@@ -26,7 +26,7 @@ const Typeform = () => {
      tabIndex={0}
     >
         <SwiperSlide><Intro/></SwiperSlide>
-        <SwiperSlide><SingleLineQuestion number = {1} question = "What's your first name? *"/></SwiperSlide>
+        <SwiperSlide><SingleLineQuestion number = {1} question = "What's your first name? *" name="firstName"/></SwiperSlide>
         <SwiperSlide>Slide 3</SwiperSlide>
         <SwiperSlide>Slide 4</SwiperSlide>
         <SwiperSlide>Slide 5</SwiperSlide>
