@@ -1,4 +1,5 @@
 import React from 'react'
+import ButtonContainer from '../../../utils/button/ButtonContainer'
 import styles from './Intro.module.css'
 const Intro = () => {
   return (
@@ -18,18 +19,7 @@ const Intro = () => {
          <span>- 15 hours/week for the last 3 weeks</span>
         </p>
         {/* Button Container */}
-        <div className={styles['intro-btn-container']}>
-            {/* To go to next slide */}
-            <button className={styles['intro-agree-btn']}>I agree</button>
-            <div className= {styles['intro-helpertext-container']}>
-                
-                    <div className={styles['intro-helpertext']}>
-                        press 
-                        <strong>Enter ↵</strong>
-                    </div>
-             
-            </div>
-        </div>
+      <ButtonContainer btnText = "I agree"/>
     </div>
   )
 }

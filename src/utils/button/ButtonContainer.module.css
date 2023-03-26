@@ -1,0 +1,47 @@
+/* Button Container */
+.btn-container{
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+}
+/* Button */
+.agree-btn{
+    cursor: pointer;
+    color: #fff;
+    font-weight: 700;
+    background-color: rgb(0, 119, 255);
+    border: 1px solid transparent;
+    font-family: inherit;
+    min-height: 40px;
+    padding: 6px 14px;
+    font-size: 20px;
+    border-radius: var(--sampler-comp-radius-button);
+    transition: background-color 0.1s ease-out;
+}
+/* Hover effect */
+.btn:hover{
+    background-color: rgb(38, 139, 255);
+}
+.helpertext{
+    white-space: nowrap;
+    line-height: 16px;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+.helpertext strong{
+    margin-left: 5px;
+    letter-spacing: 0.2px;
+}
+
+/* Media Queries */
+@media screen and (min-width: 599px) {
+    .helpertext-container{
+        margin-left: 12px;
+    }
+}
+
+@media screen and (max-width : 599px) {
+    .btn-container{
+        flex-direction: column;
+    }
+}
