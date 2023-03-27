@@ -1,0 +1,74 @@
+.selectionQuestion-container{
+    text-align: left;
+    max-width: 720px;
+    width: 100%;
+    padding: 0 40px;
+}
+
+.question-helperText{
+    margin-top: 8px;
+    font-size: 20px;
+line-height: 28px;
+color: rgba(255, 255, 255, 0.7)
+}
+.selectInput-wrapper{
+    width: 100%;
+    color: #fff;
+    border: none;
+    outline: none;
+    font-size: 30px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0px 1px;
+    padding-bottom: 8px;
+    background-color: inherit;
+    margin-top: 32px;
+    position: relative;
+}
+.selectInput-wrapper input{
+    background-color: inherit;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    padding: 0px 32px 8px 0px;
+    border: none;
+    outline: none;
+    font-size: 30px;
+    font-family: inherit;
+}
+.selectInput-wrapper input::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+/* Toggle button */
+.toggleBtn{
+    position: absolute;
+    border: none;
+    background-color: inherit;
+    color: #fff;
+   cursor: pointer;
+   right: 0px;
+   top: 5px;
+}
+/* Options */
+.option{
+    margin-top: 10px;
+    position: relative;
+
+    width: 100%;
+    max-height: calc(50vh - 100px);
+    overflow-y: scroll;
+}
+.option ul{
+    list-style: none;
+    height: 100%;
+    padding-inline-start: 0px;
+}
+.option li{
+    padding: 5px;
+    border: 1px solid #fff;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 5px;
+    background-color:rgba(255, 255, 255, 0.2);
+    font-weight: 300;
+    font-family: inherit;
+}
