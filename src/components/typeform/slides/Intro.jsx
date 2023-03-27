@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSwiper } from 'swiper/react'
 import ButtonContainer from '../../../utils/button/ButtonContainer'
 import styles from './Intro.module.css'
 const Intro = (props) => {
   const swiper = useSwiper()
+
   const nextSlide = () => {
+    swiper.allowSlideNext = true;
     swiper.slideNext()
   }
   return (
