@@ -54,7 +54,7 @@ color: rgba(255, 255, 255, 0.7)
 
     width: 100%;
     max-height: calc(50vh - 100px);
-    overflow-y: scroll;
+    overflow:auto;
 }
 .option ul{
     list-style: none;

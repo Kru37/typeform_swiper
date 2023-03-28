@@ -54,6 +54,7 @@ const Typeform = () => {
       autoplay={false}
       mousewheel={{
         forceToAxis: true,
+        thresholdDelta: 200
       }}
       modules={[Mousewheel, Pagination]}
       onBeforeTransitionStart={firstMove}
