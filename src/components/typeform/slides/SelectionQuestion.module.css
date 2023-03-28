@@ -17,7 +17,7 @@ color: rgba(255, 255, 255, 0.7)
     border: none;
     outline: none;
     font-size: 30px;
-    box-shadow: rgba(255, 255, 255, 0.3) 0px 1px;
+  
     padding-bottom: 8px;
     background-color: inherit;
     margin-top: 32px;
@@ -27,15 +27,20 @@ color: rgba(255, 255, 255, 0.7)
     background-color: inherit;
     width: 100%;
     color: rgb(255, 255, 255);
+    box-shadow: rgba(255, 255, 255, 0.3) 0px 1px;
     padding: 0px 32px 8px 0px;
     border: none;
     outline: none;
     font-size: 30px;
     font-family: inherit;
 }
+/* repeat */
 .selectInput-wrapper input::placeholder{
     color: rgba(255, 255, 255, 0.5);
     font-weight: 400;
+}
+.selectInput-wrapper input:focus{
+    box-shadow: rgba(255, 255, 255) 0px 2px;
 }
 /* Toggle button */
 .toggleBtn{
