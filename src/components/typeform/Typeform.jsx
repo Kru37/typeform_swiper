@@ -9,9 +9,12 @@ import "./Typeform.css";
 import Intro from "./slides/Intro";
 import SingleLineQuestion from "./slides/SingleLineQuestion";
 import SelectionQuestion from "./slides/SelectionQuestion";
+import { useDispatch } from "react-redux";
+import { formAction } from "../../store/formSlice";
 
 const Typeform = () => {
   const [isAllowedNext, setisAllowedNext] = useState(true);
+  const dispatch = useDispatch()
   //  const swipeRef = useRef()
   // const nextSlide = () => {
   //   console.log('clicked')
@@ -47,6 +50,13 @@ const Typeform = () => {
     }
   };
 
+  const hideList = (e) => {
+    if(!e.target.closest(".input-options-container")){
+       dispatch(formAction.changeListstatus(false))
+    }
+     
+  }
+
   return (
     <Swiper
       style={{ height: "100vh" }}
@@ -81,7 +91,7 @@ const Typeform = () => {
           name="lastName"
         />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide onClick={hideList}>
         <SelectionQuestion
           number={3}
           question="What industry is your company in? *"

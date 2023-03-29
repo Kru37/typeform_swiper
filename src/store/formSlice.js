@@ -8,7 +8,8 @@ const formSlice = createSlice({
         formData: {
             firstName:'',
             lastName:''
-        }
+        },
+        showList:false
     },
     reducers:{
         addData:(state , action) => {
@@ -25,6 +26,12 @@ const formSlice = createSlice({
              }
            }
            state.completed = Math.floor((dummy/6)*100)
+        },
+        toggleList: (state) => {
+            state.showList = !state.showList
+        },
+        changeListstatus: (state , action) => {
+            state.showList = action.payload
         }
 
     }

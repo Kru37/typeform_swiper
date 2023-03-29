@@ -5,12 +5,12 @@ import { IoMdArrowDropup, IoMdArrowDropdown, IoMdClose } from "react-icons/io";
 import styles from "./SelectionQuestion.module.css";
 import ButtonContainer from "../../../utils/button/ButtonContainer";
 import { debounce } from "lodash";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { formAction } from "../../../store/formSlice";
 
 const SelectionQuestion = (props) => {
   const [industries, setIndustries] = useState(industriesList);
-  const [show, setShow] = useState(true);
+  const showList = useSelector((state) => state.typeform.showList)
   const [completed, setCompleted] = useState(false);
   const [isError, setError] = useState(false);
   const [industry, setIndustry] = useState("");
@@ -44,12 +44,12 @@ const SelectionQuestion = (props) => {
     ul.scrollTop += delta;
   };
   const toggleList = () => {
-    setShow((data) => !data);
+   dispatch(formAction.toggleList())
   };
   const handleListItemClick = (e) => {
     setIndustry(e.target.textContent);
     setCompleted(true);
-    setShow(false);
+    dispatch(formAction.changeListstatus(false))
     // optimize
     dispatch(
       formAction.addData({ name: props.name, value: e.target.textContent })
@@ -59,12 +59,10 @@ const SelectionQuestion = (props) => {
     setIndustry('');
     setCompleted(false)
   }
-  const hideList = (e) => {
-    if(!e.target.closest(".input-options-container")){
-       setShow(false)
-    }
-     
+  const focusList = () => {
+    dispatch(formAction.changeListstatus(true))
   }
+
   return (
     // Selection Question Container
 
@@ -84,7 +82,7 @@ const SelectionQuestion = (props) => {
           value={industry}
           placeholder="Type or select an option"
           onChange={handleInputChange}
-          onFocus={() => setShow(true)}
+          onFocus={focusList}
         />
         {completed ? (
           <button className={styles.toggleBtn} onClick={cancelSelection}>
@@ -92,7 +90,7 @@ const SelectionQuestion = (props) => {
           </button>
         ) : (
           <button className={styles.toggleBtn} onClick={toggleList}>
-            {show ? (
+            {showList ? (
               <IoMdArrowDropup size={32} />
             ) : (
               <IoMdArrowDropdown size={32} />
@@ -101,7 +99,7 @@ const SelectionQuestion = (props) => {
         )}
       </div>
       {/* Based on show status industry will be displayed */}
-      {show && (
+      {showList && (
         <div className={styles.option} onWheel={handleWheel} ref={optionRef}>
           <ul>
             {industries.map((data) => {
