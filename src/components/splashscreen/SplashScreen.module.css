@@ -10,7 +10,7 @@
 
 .logo img{
     width: 120px;
-    animation: logoDisappear 1s  2s ease-out;
+    animation: logoDisappear 1s  2s forwards ease-out;
     position: relative;
 }
 /* Fade animation for logo */
@@ -31,7 +31,7 @@
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     overflow: hidden;
-    animation: loadingDisappear 1s  2s ease-out;
+    animation: loadingDisappear 1s  2s forwards ease-out;
 }
 .loading-bar{
     width: 120px;

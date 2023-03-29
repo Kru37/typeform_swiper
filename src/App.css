@@ -1,0 +1,11 @@
+.main{
+    animation: screenFade 2s  ease-out;
+}
+@keyframes screenFade{
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+  }

@@ -16,4 +16,15 @@
     width: 100%;
     /* to maintain aspect ratio */
     height: auto;
+    animation: logoAppear 2s forwards ease-out;
+    position: relative;
+}
+@keyframes logoAppear{
+    from{
+       top: 10px;
+       opacity: 0;
+    }to{
+        top: 0;
+        opacity: 1;
+    }
 }
