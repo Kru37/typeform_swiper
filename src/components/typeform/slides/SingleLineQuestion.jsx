@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import styles from './SingleLineQuestion.module.css'
 import arrow from '../../../assets/Arrow.svg'
 import Question from '../../../utils/question/Question'
@@ -24,6 +24,7 @@ const SingleLineQuestion = (props) => {
     //   props.changeAllowance(true)
     //  }
   }
+
   const nextSlide = () => {
     if(inputvalue){
      
@@ -33,8 +34,9 @@ const SingleLineQuestion = (props) => {
   
     }
   }
+
   return (
-    <div className={styles['single-question']} >
+    <div className={styles['single-question']}  >
       {/* Question  */}
         <Question number = {props.number} question = {props.question}/>
         {/* Answer */}

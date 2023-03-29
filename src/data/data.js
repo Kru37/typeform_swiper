@@ -148,3 +148,11 @@ export const industriesList = [
     "Wine and Spirits",
     "Wireless",
     "Writing and Editing"]
+ export const optionList = [
+    {key: "A" , value: "Founder or CXO"},
+    {key: "B" , value: "Product team"},
+    {key: "C" , value: "Marketing Team"},
+    {key: "D" , value: "VC"},
+    {key: "E" , value: "Other" }
+   
+ ]

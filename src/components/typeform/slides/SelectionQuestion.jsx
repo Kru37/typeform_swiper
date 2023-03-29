@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Question from "../../../utils/question/Question";
 import { industriesList } from "../../../data/data";
 import { IoMdArrowDropup, IoMdArrowDropdown, IoMdClose } from "react-icons/io";
@@ -7,7 +7,8 @@ import ButtonContainer from "../../../utils/button/ButtonContainer";
 import { debounce } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { formAction } from "../../../store/formSlice";
-
+import { useSwiper } from "swiper/react";
+import Error from "../../../utils/error/Error";
 const SelectionQuestion = (props) => {
   const [industries, setIndustries] = useState(industriesList);
   const showList = useSelector((state) => state.typeform.showList)
@@ -16,13 +17,16 @@ const SelectionQuestion = (props) => {
   const [industry, setIndustry] = useState("");
   const dispatch = useDispatch();
   const optionRef = useRef(null);
+const swiper = useSwiper()
 
   // Stores the value in the redux store
   const setInStore = (name, val) => {
     const found = industriesList.findIndex((data) => data === val);
     if (found !== -1) {
       setCompleted(true);
+
       dispatch(formAction.addData({ name, value: found }));
+      dispatch(formAction.setProgress())
     }
   };
   // Debounce function to wait for sometime before adding
@@ -30,6 +34,7 @@ const SelectionQuestion = (props) => {
   // Function to filter the list according to the input
   const handleInputChange = (e) => {
     setCompleted(false);
+    setError(false)
     setIndustry(e.target.value);
     const searchValue = e.target.value.toLowerCase();
     const filteredList = industriesList.filter(
@@ -43,24 +48,39 @@ const SelectionQuestion = (props) => {
     const ul = optionRef.current.querySelector("ul");
     ul.scrollTop += delta;
   };
+  // To toggle the list
   const toggleList = () => {
    dispatch(formAction.toggleList())
   };
+  // After selecting an industry from the list
   const handleListItemClick = (e) => {
     setIndustry(e.target.textContent);
     setCompleted(true);
+    setError(false)
+   
     dispatch(formAction.changeListstatus(false))
     // optimize
     dispatch(
       formAction.addData({ name: props.name, value: e.target.textContent })
     );
+    dispatch(formAction.setProgress())
   };
+  // To clear input
   const cancelSelection = () => {
     setIndustry('');
     setCompleted(false)
   }
+  // To show list on input focus
   const focusList = () => {
     dispatch(formAction.changeListstatus(true))
+  }
+
+  const nextSlide = () => {
+     if(completed){
+       swiper.slideNext()
+     }else{
+       setError(true)
+     }
   }
 
   return (
@@ -114,7 +134,7 @@ const SelectionQuestion = (props) => {
       )}
       </div>
       {/* Based on error either error or button container will be displayed */}
-      {isError ? <Error /> : <ButtonContainer btnText="OK" />}
+      {isError ? <Error /> : <ButtonContainer btnText="OK" nextSlide = {nextSlide}/>}
     </div>
   
   );

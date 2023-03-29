@@ -1,0 +1,75 @@
+.optionList-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    min-height: 40px;
+    padding: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgb(255, 255, 255);
+    box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 0px 1px inset;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.optionList-item-active{
+    box-shadow: rgba(255, 255, 255) 0px 0px 0px 1px inset;
+}
+.optionList-item-active .key-wrapper{
+    background-color:#fff;
+border:1px solid transparent;
+border-radius: 2px;
+color: #000;
+}
+.optionList-item:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.optionList{
+    display: inline-flex;
+    align-items: stretch;
+    min-width: 141px;
+max-width: 100%;
+-moz-box-align: stretch;
+flex-direction: column;
+flex-wrap: wrap;
+margin-top: 32px;
+}
+.multipleSelect-container{
+    text-align: left;
+    max-width: 720px;
+    width: 100%;
+    padding: 0 40px;
+}
+.optionItemLabel{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.key-wrapper{
+    width: 24px;
+height: 24px;
+background-color: rgba(0, 0, 0, 0.8);
+border:1px solid rgba(255, 255, 255, 0.6);
+border-radius: 2px;
+display: flex;
+-moz-box-align: center;
+justify-content: center;
+font-weight: 700;
+text-align: center;
+flex-direction: column;
+font-size: 12px;
+line-height: 16px;
+color: rgb(255, 255, 255);
+}
+.optionValue{
+    min-width: 75px;
+}
+
+.optionValue span{
+    font-size: 20px;
+line-height: 28px;
+}
+.checkbox{
+    padding: 0px 12px 0px 20px;
+    display: flex;
+    align-items: center;
+}

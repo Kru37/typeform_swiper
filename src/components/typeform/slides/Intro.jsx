@@ -9,6 +9,7 @@ const Intro = (props) => {
     swiper.allowSlideNext = true;
     swiper.slideNext()
   }
+
   return (
     // Intro section
     <div className={styles['intro-container']}>

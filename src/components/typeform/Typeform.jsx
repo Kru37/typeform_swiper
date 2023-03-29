@@ -11,9 +11,12 @@ import SingleLineQuestion from "./slides/SingleLineQuestion";
 import SelectionQuestion from "./slides/SelectionQuestion";
 import { useDispatch } from "react-redux";
 import { formAction } from "../../store/formSlice";
+import { industriesList } from "../../data/data";
+import MultipleSelect from "./slides/MultipleSelect";
 
 const Typeform = () => {
   const [isAllowedNext, setisAllowedNext] = useState(true);
+
   const dispatch = useDispatch()
   //  const swipeRef = useRef()
   // const nextSlide = () => {
@@ -49,14 +52,42 @@ const Typeform = () => {
       setisAllowedNext(true);
     }
   };
-
+// To hide industry list when clicked outside options container
   const hideList = (e) => {
     if(!e.target.closest(".input-options-container")){
        dispatch(formAction.changeListstatus(false))
     }
      
   }
+const changeAllowance = (status) => {
+  setisAllowedNext(status)
+}
+  // const handleWheel = (e) => {
+  //   if(e.target.querySelector('input')){
+  //      const name = e.target.querySelector('input').getAttribute('name')
+  //      if(name !== 'industry'){
+  //         if(!e.target.querySelector('input').value){
+  //           setisAllowedNext(false)
+  //         }else{
+  //           setisAllowedNext(true);
+  //         }
+  //      }else{
+  //          const value = e.target.querySelector('input').value;
+  //          if(industriesList.includes(value)){
+  //           setisAllowedNext(true)
+  //          }else{
+  //           setisAllowedNext(false)
+  //          }
+  //      }
 
+  //   }
+  
+  // }
+  // const handleIndexChange = () => {
+  //   setisAllowedNext(false)
+  //   setisWheeled(false)
+  // }
+  
   return (
     <Swiper
       style={{ height: "100vh" }}
@@ -64,10 +95,11 @@ const Typeform = () => {
       autoplay={false}
       mousewheel={{
         forceToAxis: true,
-        thresholdDelta: 200
+        thresholdDelta: 100,
+        thresholdTime:3000
       }}
       modules={[Mousewheel, Pagination]}
-      onBeforeTransitionStart={firstMove}
+   
       onSliderFirstMove = {firstMove}
       allowSlideNext={isAllowedNext}
       className="mySwiper"
@@ -76,15 +108,16 @@ const Typeform = () => {
       <SwiperSlide>
         <Intro />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide >
         <SingleLineQuestion
           number={1}
           question="What's your first name? *"
           name="firstName"
+          isAllowedNext = {isAllowedNext}
+          changeAllowance = {changeAllowance}
         />
       </SwiperSlide>
       <SwiperSlide>
-        {" "}
         <SingleLineQuestion
           number={2}
           question="What's your last name? *"
@@ -98,7 +131,18 @@ const Typeform = () => {
           name="industry"
         />
       </SwiperSlide>
-      <SwiperSlide>Slide 5</SwiperSlide>
+      <SwiperSlide><MultipleSelect  type = "single" number={4}
+          question="Your role in your company? *"
+          name="industry" >
+                <div className="moreInfo">
+          <p>We want to understand how you spend your time right now.</p>
+            <br />
+           <p>[🔴 <em>DEVELOPER NOTICE: Options in the questions ahead depend on this question's response/s. </em>]</p>
+          </div>
+          </MultipleSelect>
+      
+          
+          </SwiperSlide>
       <SwiperSlide>Slide 6</SwiperSlide>
       <SwiperSlide>Slide 7</SwiperSlide>
       <SwiperSlide>Slide 8</SwiperSlide>
