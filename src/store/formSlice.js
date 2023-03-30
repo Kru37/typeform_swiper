@@ -10,12 +10,14 @@ const formSlice = createSlice({
             lastName:'',
             industry:'',
             role:'',
+            goal:'',
             email:''
         },
         showList:false
     },
     reducers:{
         addData:(state , action) => {
+            console.log(state.formData)
             state.formData = {
                 ...state.formData,
                 [action.payload.name] : action.payload.value

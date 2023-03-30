@@ -9,15 +9,16 @@ import "./Typeform.css";
 import Intro from "./slides/Intro";
 import SingleLineQuestion from "./slides/SingleLineQuestion";
 import SelectionQuestion from "./slides/SelectionQuestion";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { formAction } from "../../store/formSlice";
-import { industriesList } from "../../data/data";
+import { founderGoal, industriesList, optionList, otherGoals } from "../../data/data";
 import MultipleSelect from "./slides/MultipleSelect";
+
 
 const Typeform = () => {
   const [isAllowedNext, setisAllowedNext] = useState(true);
-
-  const dispatch = useDispatch()
+  const formData = useSelector((state) => state.typeform.formData)
+  const dispatch = useDispatch();
   //  const swipeRef = useRef()
   // const nextSlide = () => {
   //   console.log('clicked')
@@ -52,16 +53,15 @@ const Typeform = () => {
       setisAllowedNext(true);
     }
   };
-// To hide industry list when clicked outside options container
+  // To hide industry list when clicked outside options container
   const hideList = (e) => {
-    if(!e.target.closest(".input-options-container")){
-       dispatch(formAction.changeListstatus(false))
+    if (!e.target.closest(".input-options-container")) {
+      dispatch(formAction.changeListstatus(false));
     }
-     
-  }
-const changeAllowance = (status) => {
-  setisAllowedNext(status)
-}
+  };
+  const changeAllowance = (status) => {
+    setisAllowedNext(status);
+  };
   // const handleWheel = (e) => {
   //   if(e.target.querySelector('input')){
   //      const name = e.target.querySelector('input').getAttribute('name')
@@ -81,13 +81,13 @@ const changeAllowance = (status) => {
   //      }
 
   //   }
-  
+
   // }
   // const handleIndexChange = () => {
   //   setisAllowedNext(false)
   //   setisWheeled(false)
   // }
-  
+
   return (
     <Swiper
       style={{ height: "100vh" }}
@@ -96,11 +96,10 @@ const changeAllowance = (status) => {
       mousewheel={{
         forceToAxis: true,
         thresholdDelta: 100,
-        thresholdTime:3000
+        thresholdTime: 3000,
       }}
       modules={[Mousewheel, Pagination]}
-   
-      onSliderFirstMove = {firstMove}
+      onSliderFirstMove={firstMove}
       allowSlideNext={isAllowedNext}
       className="mySwiper"
       tabIndex={0}
@@ -108,17 +107,15 @@ const changeAllowance = (status) => {
       <SwiperSlide>
         <Intro />
       </SwiperSlide>
-      <SwiperSlide >
+      <SwiperSlide>
         <SingleLineQuestion
           number={1}
           question="What's your first name? *"
           name="firstName"
-          type = "text"
-          isAllowedNext = {isAllowedNext}
-          changeAllowance = {changeAllowance}
-          placeholder = "Type your answer here..."
-
-
+          type="text"
+          isAllowedNext={isAllowedNext}
+          changeAllowance={changeAllowance}
+          placeholder="Type your answer here..."
         />
       </SwiperSlide>
       <SwiperSlide>
@@ -126,10 +123,10 @@ const changeAllowance = (status) => {
           number={2}
           question="What's your last name? *"
           name="lastName"
-          type = "text"
-          isAllowedNext = {isAllowedNext}
-          changeAllowance = {changeAllowance}
-          placeholder = "Type your answer here..."
+          type="text"
+          isAllowedNext={isAllowedNext}
+          changeAllowance={changeAllowance}
+          placeholder="Type your answer here..."
         />
       </SwiperSlide>
       <SwiperSlide onClick={hideList}>
@@ -139,34 +136,68 @@ const changeAllowance = (status) => {
           name="industry"
         />
       </SwiperSlide>
-      <SwiperSlide><MultipleSelect  type = "single" number={4}
+      <SwiperSlide>
+        <MultipleSelect
+          type="single"
+          number={4}
           question="Your role in your company? *"
-          name="role" >
-                <div className="moreInfo">
-          <p>We want to understand how you spend your time right now.</p>
+          name="role"
+          optionList = {optionList}
+        >
+          <div className="moreInfo">
+            <p>We want to understand how you spend your time right now.</p>
             <br />
-           <p>[🔴 <em>DEVELOPER NOTICE: Options in the questions ahead depend on this question's response/s. </em>]</p>
+            <p>
+              [🔴{" "}
+              <em>
+                DEVELOPER NOTICE: Options in the questions ahead depend on this
+                question's response/s.{" "}
+              </em>
+              ]
+            </p>
           </div>
-          </MultipleSelect>
-      
-          
-          </SwiperSlide>
-      <SwiperSlide><SingleLineQuestion number = {6}    question="Email you'd like to register with? * "
+        </MultipleSelect>
+      </SwiperSlide>
+      <SwiperSlide>
+        <MultipleSelect
+          type="multiple"
+          number={5}
+          question="what's your professional goal for the next 12 months? *"
+          name="goal"
+          optionList = {formData.role === "Founder or CXO" ? founderGoal : otherGoals}
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <SingleLineQuestion
+          number={6}
+          question="Email you'd like to register with? * "
           name="email"
-          isAllowedNext = {isAllowedNext}
-          changeAllowance = {changeAllowance} 
-          placeholder = "name@example.com"
-          type = "email"
-          >
-      <div className="moreInfo">
-          <p>We will keep all our communications with you through this email. Do check your spam inbox if you can't find our application received email.</p>
+          isAllowedNext={isAllowedNext}
+          changeAllowance={changeAllowance}
+          placeholder="name@example.com"
+          type="email"
+        >
+          <div className="moreInfo">
+            <p>
+              We will keep all our communications with you through this email.
+              Do check your spam inbox if you can't find our application
+              received email.
+            </p>
             <br />
-           <p>[🔴 <em>DEVELOPER NOTICE: Responses submitted to this form will be forwarded to the email you input here, for you to test data submissions. </em>]</p>
+            <p>
+              [🔴{" "}
+              <em>
+                DEVELOPER NOTICE: Responses submitted to this form will be
+                forwarded to the email you input here, for you to test data
+                submissions.{" "}
+              </em>
+              ]
+            </p>
           </div>
-        </SingleLineQuestion></SwiperSlide>
-      <SwiperSlide>Slide 7</SwiperSlide>
-      <SwiperSlide>Slide 8</SwiperSlide>
-      <SwiperSlide>Slide 9</SwiperSlide>
+        </SingleLineQuestion>
+      </SwiperSlide>
+
+   
     </Swiper>
   );
 };

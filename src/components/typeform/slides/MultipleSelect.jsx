@@ -9,13 +9,17 @@ import {
 } from "react-icons/md";
 import ButtonContainer from "../../../utils/button/ButtonContainer";
 import Error from "../../../utils/error/Error";
+import { useDispatch } from "react-redux";
+import { formAction } from "../../../store/formSlice";
 const MultipleSelect = (props) => {
   const [value, setValue] = useState();
   const [isError , setError] = useState(false)
   const swiper = useSwiper();
+  const dispatch = useDispatch()
 //   HANDLES THE OPTION CLICKED 
   const handleSelect = (currentValue) => {
     setValue(currentValue);
+    dispatch(formAction.addData({name: props.name , value : currentValue}))
     setError(false)
     setTimeout(() => {
       swiper.slideNext();
@@ -36,7 +40,7 @@ const MultipleSelect = (props) => {
       {props.children}
       {/* Option List */}
       <div className={styles.optionList}>
-        {optionList.map((data) => {
+        {props.optionList.map((data) => {
           return (
             //single list item
             <div

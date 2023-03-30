@@ -156,3 +156,16 @@ export const industriesList = [
     {key: "E" , value: "Other" }
    
  ]
+
+ export const otherGoals = [
+   {key: "A" , value: "Get hired"},
+   {key: "B" , value: "Get promoted"},
+   {key: "C" , value: "Connect with like-minded people"},
+   {key: "D" , value: "Structured approach to growth"},
+   {key: "E" , value: "Build a growth team" }
+ ]
+ export const founderGoal = [
+   {key: "A" , value: "Structured approach to growth"},
+   {key: "B" , value: "Build a growth team"},
+   {key: "C" , value: "Connect with like-minded people"}
+ ]
