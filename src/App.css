@@ -1,5 +1,6 @@
 .main{
     animation: screenFade 2s  ease-out;
+    
 }
 @keyframes screenFade{
     from{

@@ -24,3 +24,9 @@
 .question{
     font-size: 24px;
 }
+@media screen and (max-width:580px){
+    .questiont{
+        font-size: 20px;
+        line-height: 28px;
+    }
+}

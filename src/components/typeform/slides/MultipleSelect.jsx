@@ -49,6 +49,7 @@ const MultipleSelect = (props) => {
            if(newValue.length === 2 ){
             console.log(newValue)
             dispatchFuction(newValue)
+            dispatch(formAction.setProgress())
            }
          }else{
          

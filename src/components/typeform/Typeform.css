@@ -1,7 +1,8 @@
 .swiper{
     height: 100%;
     width: 100%;
-  padding: 10px;
+  padding: 10px 40px;
+ 
  
 }
 .swiper-slide{
@@ -20,4 +21,10 @@
 line-height: 28px;
 color: rgba(255, 255, 255, 0.7);
 font-family: inherit;
+}
+@media screen and (max-width:580px){
+  .moreInfo{
+    font-size: 16px;
+line-height: 24px;
+  }
 }

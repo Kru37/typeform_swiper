@@ -2,7 +2,7 @@
     text-align: left;
     max-width: 720px;
     width: 100%;
-    padding: 0 40px;
+   
 }
 
 .question-helperText{
@@ -76,4 +76,17 @@ color: rgba(255, 255, 255, 0.7)
     background-color:rgba(255, 255, 255, 0.2);
     font-weight: 300;
     font-family: inherit;
+}
+
+@media screen and (max-width:580px){
+    .question-helperText{
+        font-size: 16px;
+line-height: 24px;
+    }
+    .selectInput-wrapper input{
+        font-size: 24px;
+    }
+    .option li{
+        font-size: 20px;
+    }
 }

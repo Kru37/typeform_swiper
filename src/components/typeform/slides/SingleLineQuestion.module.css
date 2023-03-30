@@ -2,7 +2,7 @@
     text-align: left;
     max-width: 720px;
     width: 100%;
-    padding: 0 40px;
+    
 }
 .answer-wrapper{
     width: 100%;
@@ -25,4 +25,9 @@
 }
 .answer-wrapper input:focus{
     box-shadow: rgba(255, 255, 255) 0px 2px;
+}
+@media screen and (max-width:580px){
+    .answer-wrapper input{
+        font-size: 20px;
+    }
 }

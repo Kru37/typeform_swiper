@@ -43,5 +43,6 @@
 @media screen and (max-width : 599px) {
     .btn-container{
         flex-direction: column;
+        margin-top: 20px;
     }
 }
