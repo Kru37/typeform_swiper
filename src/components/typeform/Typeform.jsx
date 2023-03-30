@@ -33,16 +33,41 @@ const Typeform = () => {
   // }
 
   // Will be fired when the slide transition starts
+  // const firstMove = (swiper) => {
+  //   console.log("move");
+  //   // const swiper = swipeRef.current.swiper
+  //   // gets the active slide
+  //   const inputSlide = swiper.slides[swiper.activeIndex];
+  //   if (inputSlide.querySelector("input")) {
+  //     // get the input value
+  //     const inputValue = inputSlide.querySelector("input").value;
+  //     // if value is not there disables next slide .
+  //     if (!inputValue) {
+  //       setisAllowedNext(false);
+  //     } else {
+  //       setisAllowedNext(true);
+  //     }
+  //   }
+  //   // if the slide is first slide enable next
+  //   if (swiper.activeIndex === 0) {
+  //     setisAllowedNext(true);
+  //   }
+  // };
+
   const firstMove = (swiper) => {
-    console.log("move");
     // const swiper = swipeRef.current.swiper
     // gets the active slide
-    const inputSlide = swiper.slides[swiper.activeIndex];
-    if (inputSlide.querySelector("input")) {
+  
+  
+    if (swiper.activeIndex > 0) {
+      //Get the index
+      const index = swiper.activeIndex - 1
+   // Covert the object into value array
+      const values = Object.values(formData)
       // get the input value
-      const inputValue = inputSlide.querySelector("input").value;
+    
       // if value is not there disables next slide .
-      if (!inputValue) {
+      if (!values[index]) {
         setisAllowedNext(false);
       } else {
         setisAllowedNext(true);
@@ -88,21 +113,33 @@ const Typeform = () => {
   //   setisWheeled(false)
   // }
 
+  // mousewheel pagination check
+//   <Swiper
+//   style={{ height: "100vh" }}
+//   direction={"vertical"}
+//   autoplay={false}
+//   mousewheel={{
+//     forceToAxis: true,
+//     thresholdDelta: 100,
+//     thresholdTime: 3000,
+//   }}
+//   modules={[Mousewheel, Pagination]}
+//   onSliderFirstMove={firstMove}
+//   allowSlideNext={isAllowedNext}
+//   className="mySwiper"
+//   tabIndex={0}
+// >
   return (
     <Swiper
       style={{ height: "100vh" }}
       direction={"vertical"}
       autoplay={false}
-      mousewheel={{
-        forceToAxis: true,
-        thresholdDelta: 100,
-        thresholdTime: 3000,
-      }}
-      modules={[Mousewheel, Pagination]}
+
+      modules={[ Pagination]}
       onSliderFirstMove={firstMove}
       allowSlideNext={isAllowedNext}
       className="mySwiper"
-      tabIndex={0}
+     
     >
       <SwiperSlide>
         <Intro />
@@ -134,6 +171,8 @@ const Typeform = () => {
           number={3}
           question="What industry is your company in? *"
           name="industry"
+          isAllowedNext={isAllowedNext}
+          changeAllowance={changeAllowance}
         />
       </SwiperSlide>
       <SwiperSlide>
@@ -142,7 +181,9 @@ const Typeform = () => {
           number={4}
           question="Your role in your company? *"
           name="role"
+          isAllowedNext={isAllowedNext}
           optionList = {optionList}
+          changeAllowance={changeAllowance}
         >
           <div className="moreInfo">
             <p>We want to understand how you spend your time right now.</p>
@@ -164,6 +205,8 @@ const Typeform = () => {
           number={5}
           question="what's your professional goal for the next 12 months? *"
           name="goal"
+          isAllowedNext={isAllowedNext}
+          changeAllowance={changeAllowance}
           optionList = {formData.role === "Founder or CXO" ? founderGoal : otherGoals}
         />
       </SwiperSlide>

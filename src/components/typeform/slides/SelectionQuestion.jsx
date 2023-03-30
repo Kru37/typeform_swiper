@@ -24,7 +24,7 @@ const swiper = useSwiper()
     const found = industriesList.findIndex((data) => data === val);
     if (found !== -1) {
       setCompleted(true);
-
+      props.changeAllowance(true)
       dispatch(formAction.addData({ name, value: found }));
       dispatch(formAction.setProgress())
     }
@@ -57,13 +57,14 @@ const swiper = useSwiper()
     setIndustry(e.target.textContent);
     setCompleted(true);
     setError(false)
-   
+    props.changeAllowance(true)
     dispatch(formAction.changeListstatus(false))
     // optimize
     dispatch(
       formAction.addData({ name: props.name, value: e.target.textContent })
     );
     dispatch(formAction.setProgress())
+
   };
   // To clear input
   const cancelSelection = () => {
@@ -77,6 +78,7 @@ const swiper = useSwiper()
 
   const nextSlide = () => {
      if(completed){
+      props.changeAllowance(true)
        swiper.slideNext()
      }else{
        setError(true)
@@ -134,7 +136,7 @@ const swiper = useSwiper()
       )}
       </div>
       {/* Based on error either error or button container will be displayed */}
-      {isError ? <Error /> : <ButtonContainer btnText="OK" nextSlide = {nextSlide}/>}
+      {(isError || !props.isAllowedNext)  ? <Error /> : <ButtonContainer btnText="OK" nextSlide = {nextSlide}/>}
     </div>
   
   );

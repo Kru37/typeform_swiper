@@ -80,12 +80,14 @@ const MultipleSelect = (props) => {
  const nextSlide = () => {
 if(props.type === 'single'){
   if(value.length === 1){
+    props.changeAllowance(true)
     swiper.slideNext()
   }else{
     setError(true)
   }
 }else{
   if(value.length === 2){
+    props.changeAllowance(true)
     swiper.slideNext()
   }else{
     setError(true)
@@ -130,7 +132,7 @@ if(props.type === 'single'){
         })}
       </div>
          {/*if error is present error component will be shown else button container*/}
-         { isError ? <Error/> : <ButtonContainer btnText = "OK" nextSlide = {nextSlide}/>}
+         { (isError || !props.isAllowedNext)  ? <Error/> : <ButtonContainer btnText = "OK" nextSlide = {nextSlide}/>}
     </div>
   );
 };

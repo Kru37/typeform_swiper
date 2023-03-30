@@ -20,10 +20,12 @@ const SingleLineQuestion = (props) => {
       if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)){
         dispatch(formAction.addData({name: e.target.name , value: e.target.value}))
         dispatch(formAction.setProgress())
+        props.changeAllowance(true)
       }
      }else{
       dispatch(formAction.addData({name: e.target.name , value: e.target.value}))
       dispatch(formAction.setProgress())
+      props.changeAllowance(true)
      }
     
   
@@ -37,9 +39,11 @@ const SingleLineQuestion = (props) => {
   const nextSlide = () => {
 
     if(formData[props.name]){
-     if(swiper.activeIndex === 5){
-       // submit form
+     if(swiper.activeIndex === 6){
+       window.alert("form sumbitted")
+       props.changeAllowance(true)
      }else{
+      props.changeAllowance(true)
       swiper.slideNext()
      }
      
@@ -65,7 +69,7 @@ const SingleLineQuestion = (props) => {
           placeholder={props.placeholder}/>
         </div>
         {/*if error is present error component will be shown else button container*/}
-        { isError ? <Error/> : <ButtonContainer btnText = "OK" nextSlide = {nextSlide}/>}
+        { (isError || !props.isAllowedNext) ? <Error/> : <ButtonContainer btnText = "OK" nextSlide = {nextSlide}/>}
     </div>
   )
 }
