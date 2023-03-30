@@ -9,8 +9,8 @@ const formSlice = createSlice({
             firstName:'',
             lastName:'',
             industry:'',
-            role:'',
-            goal:'',
+            role:[],
+            goal:[],
             email:''
         },
         showList:false

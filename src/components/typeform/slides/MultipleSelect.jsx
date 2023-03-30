@@ -12,26 +12,85 @@ import Error from "../../../utils/error/Error";
 import { useDispatch } from "react-redux";
 import { formAction } from "../../../store/formSlice";
 const MultipleSelect = (props) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState([]);
   const [isError , setError] = useState(false)
   const swiper = useSwiper();
   const dispatch = useDispatch()
 //   HANDLES THE OPTION CLICKED 
+  // const handleSelect = (currentValue) => {
+  //   if(props.type === 'single'){
+  //      setValue([currentValue])
+  //   }
+  //   setValue(currentValue);
+  //   dispatch(formAction.addData({name: props.name , value : currentValue}))
+  //   setError(false)
+  //   setTimeout(() => {
+  //     swiper.slideNext();
+  //   }, 1000);
+  // };
   const handleSelect = (currentValue) => {
-    setValue(currentValue);
+    if(props.type === 'single'){
+       setValue([currentValue])
+       dispatchFuction([currentValue])
+    }else{
+      let newValue = [...value]
+      if(newValue.length === 2){
+        if(newValue.includes(currentValue)){
+          console.log('dd')
+          const index = newValue.indexOf(currentValue)
+          newValue.splice(index , 1)
+          setValue(newValue)
+          return
+        }
+      }
+      if(newValue.length < 2){
+         if(!newValue.includes(currentValue)){
+          newValue = [...newValue , currentValue]
+           if(newValue.length === 2 ){
+            console.log(newValue)
+            dispatchFuction(newValue)
+           }
+         }else{
+         
+          const index = newValue.indexOf(currentValue)
+          newValue.splice(index , 1)
+          console.log(newValue , 'dd')
+         }
+         setValue(newValue)
+      }
+     
+    }
+
+  };
+  const dispatchFuction = (currentValue) => {
     dispatch(formAction.addData({name: props.name , value : currentValue}))
     setError(false)
-    setTimeout(() => {
-      swiper.slideNext();
-    }, 1000);
-  };
+    // setTimeout(() => {
+    //   swiper.slideNext();
+    // }, 1000);
+  }
+//  const nextSlide = () => {
+//     if(!value){
+//         setError(true)
+//     }else{
+//         swiper.slideNext();
+//     }
+//  }
  const nextSlide = () => {
-    if(!value){
-        setError(true)
-    }else{
-        swiper.slideNext();
-    }
- }
+if(props.type === 'single'){
+  if(value.length === 1){
+    swiper.slideNext()
+  }else{
+    setError(true)
+  }
+}else{
+  if(value.length === 2){
+    swiper.slideNext()
+  }else{
+    setError(true)
+  }
+}
+}
   return (
     <div className={styles["multipleSelect-container"]}>
       {/* Question */}
@@ -46,7 +105,7 @@ const MultipleSelect = (props) => {
             <div
               key={data.key}
               className={`${styles["optionList-item"]} ${
-                data.value === value ? styles["optionList-item-active"] : ""
+                value.includes(data.value) ? styles["optionList-item-active"] : ""
               }`}
               onClick={() => handleSelect(data.value)}
             >
@@ -59,7 +118,7 @@ const MultipleSelect = (props) => {
                 </div>
               </div>
               <div className={styles.checkbox}>
-                {data.value === value ? (
+                { value.includes(data.value) ? (
                   <MdOutlineRadioButtonChecked />
                 ) : (
                   <MdOutlineRadioButtonUnchecked />
