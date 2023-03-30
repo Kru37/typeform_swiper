@@ -16,8 +16,17 @@ const SingleLineQuestion = (props) => {
   const handleInputChange = (e) => {
      setError(false)
      setValue(e.target.value)
-     dispatch(formAction.addData({name: e.target.name , value: e.target.value}))
-     dispatch(formAction.setProgress())
+     if(props.type === 'email'){
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)){
+        dispatch(formAction.addData({name: e.target.name , value: e.target.value}))
+        dispatch(formAction.setProgress())
+      }
+     }else{
+      dispatch(formAction.addData({name: e.target.name , value: e.target.value}))
+      dispatch(formAction.setProgress())
+     }
+    
+  
     //  if(!e.target.value){
     //   props.changeAllowance(false)
     //  }else{
@@ -26,9 +35,14 @@ const SingleLineQuestion = (props) => {
   }
 
   const nextSlide = () => {
-    if(inputvalue){
-     
+
+    if(formData[props.name]){
+     if(swiper.activeIndex === 5){
+       // submit form
+     }else{
       swiper.slideNext()
+     }
+     
     }else{
       setError(true)
   
@@ -39,14 +53,16 @@ const SingleLineQuestion = (props) => {
     <div className={styles['single-question']}  >
       {/* Question  */}
         <Question number = {props.number} question = {props.question}/>
+        {/* More info */}
+        {props.children}
         {/* Answer */}
         <div className={styles["answer-wrapper"]}>
           <input 
-          type="text" 
+          type={props.type} 
           name={props.name} 
           value = {inputvalue} 
           onChange={handleInputChange} 
-          placeholder='Type your answer here...'/>
+          placeholder={props.placeholder}/>
         </div>
         {/*if error is present error component will be shown else button container*/}
         { isError ? <Error/> : <ButtonContainer btnText = "OK" nextSlide = {nextSlide}/>}

@@ -113,8 +113,12 @@ const changeAllowance = (status) => {
           number={1}
           question="What's your first name? *"
           name="firstName"
+          type = "text"
           isAllowedNext = {isAllowedNext}
           changeAllowance = {changeAllowance}
+          placeholder = "Type your answer here..."
+
+
         />
       </SwiperSlide>
       <SwiperSlide>
@@ -122,6 +126,10 @@ const changeAllowance = (status) => {
           number={2}
           question="What's your last name? *"
           name="lastName"
+          type = "text"
+          isAllowedNext = {isAllowedNext}
+          changeAllowance = {changeAllowance}
+          placeholder = "Type your answer here..."
         />
       </SwiperSlide>
       <SwiperSlide onClick={hideList}>
@@ -133,7 +141,7 @@ const changeAllowance = (status) => {
       </SwiperSlide>
       <SwiperSlide><MultipleSelect  type = "single" number={4}
           question="Your role in your company? *"
-          name="industry" >
+          name="role" >
                 <div className="moreInfo">
           <p>We want to understand how you spend your time right now.</p>
             <br />
@@ -143,7 +151,19 @@ const changeAllowance = (status) => {
       
           
           </SwiperSlide>
-      <SwiperSlide>Slide 6</SwiperSlide>
+      <SwiperSlide><SingleLineQuestion number = {6}    question="Email you'd like to register with? * "
+          name="email"
+          isAllowedNext = {isAllowedNext}
+          changeAllowance = {changeAllowance} 
+          placeholder = "name@example.com"
+          type = "email"
+          >
+      <div className="moreInfo">
+          <p>We will keep all our communications with you through this email. Do check your spam inbox if you can't find our application received email.</p>
+            <br />
+           <p>[🔴 <em>DEVELOPER NOTICE: Responses submitted to this form will be forwarded to the email you input here, for you to test data submissions. </em>]</p>
+          </div>
+        </SingleLineQuestion></SwiperSlide>
       <SwiperSlide>Slide 7</SwiperSlide>
       <SwiperSlide>Slide 8</SwiperSlide>
       <SwiperSlide>Slide 9</SwiperSlide>

@@ -7,7 +7,10 @@ const formSlice = createSlice({
         completed:0,
         formData: {
             firstName:'',
-            lastName:''
+            lastName:'',
+            industry:'',
+            role:'',
+            email:''
         },
         showList:false
     },
