@@ -15,7 +15,7 @@ function App() {
     return () => {
       clearTimeout(timer)
     }
-  })
+  },[])
   if(showSplash){
     return <SplashScreen/>
   }

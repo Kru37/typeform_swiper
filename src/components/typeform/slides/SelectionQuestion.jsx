@@ -16,7 +16,7 @@ const SelectionQuestion = (props) => {
   const [isError, setError] = useState(false);
   const [industry, setIndustry] = useState("");
   const dispatch = useDispatch();
-  const optionRef = useRef(null);
+  // const optionRef = useRef(null);
 const swiper = useSwiper()
 
   // Stores the value in the redux store
@@ -30,7 +30,7 @@ const swiper = useSwiper()
     }
   };
   // Debounce function to wait for sometime before adding
-  const debouncedSetInStore = debounce((val) => setInStore(val), 500);
+  // const debouncedSetInStore = debounce((name , val) => setInStore(name , val), 500);
   // Function to filter the list according to the input
   const handleInputChange = (e) => {
     setCompleted(false);
@@ -41,13 +41,14 @@ const swiper = useSwiper()
       (data) => data.toLowerCase().indexOf(searchValue) !== -1
     );
     setIndustries(filteredList);
-    debouncedSetInStore(e.target.name, e.target.value);
+    setInStore(e.target.name, e.target.value)
+    // debouncedSetInStore(e.target.name, e.target.value);
   };
-  const handleWheel = (e) => {
-    const delta = e.deltaY;
-    const ul = optionRef.current.querySelector("ul");
-    ul.scrollTop += delta;
-  };
+  // const handleWheel = (e) => {
+  //   const delta = e.deltaY;
+  //   const ul = optionRef.current.querySelector("ul");
+  //   ul.scrollTop += delta;
+  // };
   // To toggle the list
   const toggleList = () => {
    dispatch(formAction.toggleList())
@@ -70,6 +71,8 @@ const swiper = useSwiper()
   const cancelSelection = () => {
     setIndustry('');
     setCompleted(false)
+    dispatch(formAction.addData({ name: props.name, value: ''}));
+    dispatch(formAction.setProgress())
   }
   // To show list on input focus
   const focusList = () => {
@@ -122,7 +125,7 @@ const swiper = useSwiper()
       </div>
       {/* Based on show status industry will be displayed */}
       {showList && (
-        <div className={styles.option} onWheel={handleWheel} ref={optionRef}>
+        <div className={styles.option} >
           <ul>
             {industries.map((data) => {
               return (

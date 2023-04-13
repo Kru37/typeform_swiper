@@ -17,7 +17,7 @@ const formSlice = createSlice({
     },
     reducers:{
         addData:(state , action) => {
-            console.log(state.formData)
+            //console.log(state.formData)
             state.formData = {
                 ...state.formData,
                 [action.payload.name] : action.payload.value
@@ -27,7 +27,14 @@ const formSlice = createSlice({
            let dummy = 0;
            for(let key in state.formData){
              if(state.formData[key]){
-                dummy += 1
+                if(key === 'role' || key === 'goal'){
+                   if(state.formData[key].length !== 0){
+                    dummy += 1
+                   }
+                }else{
+                    dummy += 1
+                }
+               
              }
            }
            state.completed = Math.floor((dummy/6)*100)

@@ -32,6 +32,7 @@ const MultipleSelect = (props) => {
     if(props.type === 'single'){
        setValue([currentValue])
        dispatchFuction([currentValue])
+       dispatch(formAction.setProgress())
     }else{
       let newValue = [...value]
       if(newValue.length === 2){
